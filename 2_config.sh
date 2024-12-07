@@ -34,7 +34,7 @@ for i in $dotd ; do cp -r $i ~/ ; done
 for i in $dotf ; do cp $i ~/ ; done
 # load the dconf settings backup to the new machine
 cd $mydir
-dconf load / < dconf-settingsCinn.ini
+dconf load / < dconf-settings.ini
 echo "- - - - - - - - - -"
 echo " Done! Reboot now"
 echo "- - - - - - - - - -"
