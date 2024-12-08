@@ -15,13 +15,13 @@ to something with the software and the looks you like, in no-time; maybe like th
 # What this is (and is not)
 
 This project is a collection of steps and shell scripts to replicate your customised Linux Mint system (settings for desktop and most apps) to other, fresh installations of Linux Mint.
-It is not a download-and-use package, but a guide meant to be adapted to each case. NOTE that **this does not a back up your data files**, it's only for preparation of a new system (although you can of course modify this to include some sort of backup).
+It is not a download-and-use package, but a guide meant to be adapted to each case. NOTE that **this does not back up your data files, images, etc.**, it's only for preparation of a new system (although you can of course modify this to include some sort of backup).
 Alternatively, it is possible make your own ("DVD/USB") install media to include/exclude software, configurations, etc., but for small-scale use that's not as simple as the recipe I show here --making your own linux install media is simpler if you have to deploy the same system on lots of computers, but if you need that you won't be reading this guide!
 
 **Use-case**: you have installed and configured your Linux Mint and software, are happy with the way it looks and works, and now you want to replicate the same on other computers (maybe on virtual machines to do other stuff) without doing everything by hand again and again.
 
 This is most useful when you always do the same things to a new system so that it looks and behaves the way you want; some examples:
-* You define some variables and aliases in your ~.bashrc file.
+* You define some variables and aliases in your `~/.bashrc` file.
 * You like to add some particular applets (like weather, etc.) to the panel. Adding applets is easy enough, but: 1) they have to be added one by one, 2) they also have to be configured one by one, and some applets have many settings to modify (for example, maybe you want the "System Monitor" but don't want to show the "Load", and so on).
 * In the file manager (e.g. Nemo), you prefer a different column order, or different columns, column widths, toolbar buttons, view, etc.
 * You want to apply some theme.
@@ -39,7 +39,7 @@ If this is your first time here, I recommend reading the long story first, to un
 ### Steps
 
 1. Prepare your "backup" source files and copy them e.g. to a USB (see the .sh scripts for examples).
-    * Dot files, dot directories, list of software & (python) packages, locale file, dconf backup (`dconf dump / > dconf-settings.ini`), and .sh scripts.
+    * Dot files, dot directories, list of software & (Python) packages, locale file, dconf backup (`dconf dump / > dconf-settings.ini`), and .sh scripts.
 
 2. Do the new Mint install on the new computer.
 
@@ -61,11 +61,11 @@ The recipe I developed, described below, is a setp-by-step guide and two bash sh
 
 * This has been tested on Mint 22 Cinnamon, and some things may/will not apply or work for other distros, DEs (Mate, XFce...) or other major versions of Mint Cinnamon, but should be a good starting point.
 
-* The process is likely not optimised yet, and includes three reboots, some of which may not be strictly necessary (perhaps service restarts or log outs/ins might be enough, but so far I have not looked into that); in any case, this recipe works :)
+* The process is likely not optimal yet, and includes three reboots, some of which might not be strictly necessary (perhaps service restarts or log outs/ins might be enough, but so far I have not looked into that); in any case, this recipe works :)
 
-* Follow the steps below, which include some commands in the terminal, and running a couple of scripts. The scripts I made here include some examples of software to install, but you should modify them for your desired apps and python packages. Still, some of them should be kept (marked as such in the .sh files).
+* Follow the steps below, which include some commands in the terminal, and running a couple of scripts. The scripts I made here include some examples of software to install, but you should modify them for your desired apps and Python packages. Still, some of them should be kept (marked as such in the .sh files).
 
-* As the Python packages I need have the problem I described above, the script installs python-venv, then creates a virtual environment in the user's home, activates it, and adds it to the ~/.bashrc file so that it is automatically activated when opening a terminal.
+* As the Python packages I need have the problem I described above, the script installs python-venv, then creates a virtual environment in the user's home, activates it, and adds it to the `~/.bashrc` file so that it is automatically activated when opening a terminal.
 
 ## 1. Preparation
 Install and set up the "source" system; install apps, desktop applets & themes, configure settings, customise, etc. Once ready, create some "backup" directory where we will place all files, settings, etc to be transplanted. Copy the 2 shell scripts (`1_packs.sh` and `2_config.sh`) to this directory too. Let's say this directory is ~/mybak
@@ -88,7 +88,7 @@ LC_IDENTIFICATION=en_GB.UTF-8\
 LC_NAME=en_GB.UTF-8\
 LC_ADDRESS=en_GB.UTF-8\
 LC_TELEPHONE=en_GB.UTF-8\
-LC_MEASUREMENT=en_GB.UTF-8\
+LC_MEASUREMENT=en_GB.UTF-8
 
 ### 1c.
 Copy the relevant dot files and dot directories, e.g. (adjust as per your system; some files or directories may not exist, but keeping them in the lists below should not cause problems):
@@ -113,25 +113,25 @@ Copy the setup scripts (`1_packs.sh` and `2_config.sh`) to the backup directory.
 Copy the backup directory to a USB or any portable location. Now we are ready!
 
 ## 2. Install Linux Mint on the new computer/s.
-Just follow the graphical installer (I recommend to activate the option to "Install multimedia codecs") until it finishes and asks for a reboot. After the reboot, log in. The rest of the steps are done on this new machine.
+Just do the usual installation (I recommend to activate the option to "Install multimedia codecs") until it finishes and asks for a reboot. After the reboot, log in. The rest of the steps are done on this new machine.
 
 ## 3. Locale
-Open a terminal and edit the locale file (see step 1b above); delete all lines from this file in the new system and copy-paste the lines from `mylocale`:\
-`sudo nano /etc/default/locale`\
+Open a terminal and edit the locale file (see step 1b above); delete all lines from this file in the new system and copy-paste the lines from `mylocale`. To edit the file you can do:\
+` sudo nano /etc/default/locale`\
 When done, use `ctrl+x` and then `y` to save the file and close it. Then reboot, and log back in. This reboot seems safe to skip if we immediately do step 4.
 
 ## 4. Initial update
 Open a terminal and do:\
 ` sudo apt update && sudo apt upgrade -y`\
-The first script (`1_packs.sh`) will do an update before installing packages, but for extra safety, do this initial update here. When done, reboot and log back in. Usually, apt will tell us if a reboot is needed after the update, and maybe a log out/in might suffice, but I prefer to reboot here too.
+Note that the first script (`1_packs.sh`) will do an update before installing packages, but for extra safety, do this initial update here. When done, reboot and log back in. Usually, apt will tell us if a reboot is needed after the update, and maybe a log out/in might suffice, but I prefer to reboot here too.
 
 ## 5. .bashrc, software, Python
 Open a terminal, go to the directory with the scripts and run:\
 ` source 1_packs.sh`\
-  which installs stuff and creates a Python venv.\
+  which installs stuff and creates a Python venv in your home directory.\
 Note that the installation of the following requires user interaction:
-* openssh-server   (for any email server)
-* auto-cpufreq   (type I to install; note that auto-cpufreq requires git, which is installed by `1_packs.sh`, and the auto-cpufreq installer auto-downloads whatever else it needs).
+* openssh-server   (asks for an email server)
+* auto-cpufreq   (type I to install; note that auto-cpufreq requires `git`, which is installed by `1_packs.sh`, and the auto-cpufreq installer auto-downloads whatever else it needs).
 
 When done, reboot and log back in.
 
@@ -144,4 +144,4 @@ When finished, reboot and log back in. We're done!
 # Additional notes / issues
 
 * If you are curious, the theme shown on the "after" screenshot is "Graphite-Zero", with "Mint-Y-Sand" icons.
-* The applets shown on the same are: "Weather", "System Monitor", "Graphical Hardware Monitor", and "Workspace switcher" (to the right of the clock). For the Graphical HW Monitor, in my "base" machine I hide all tabs except the Disk ones (for read and for write), but for some reason this setting is not kept, and all tabs are being shown in the new machine, so this setting seems to be saved somewhere else.
+* The applets shown on the same are: "Weather", "System Monitor", "Graphical Hardware Monitor", and (to the right of the clock) "Workspace switcher". For the Graphical HW Monitor, in the "base" machine I hid all tabs except the Disk ones (for read and for write), but for some reason this setting is not copied, and all tabs are being shown in the new machine, so this setting seems to be saved somewhere else.
