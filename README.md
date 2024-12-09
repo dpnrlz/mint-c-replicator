@@ -76,7 +76,7 @@ Export your DE settings to a file:\
 
 ### 1b.
 Copy language settings:\
-` cp /etc/default/locale ~/myback/mylocale`\
+` cp /etc/default/locale ~/mybak/mylocale`\
   For example, for UK English this file may contain (make sure to include LC_TIME):\
 LANG=en_GB.UTF-8\
 LANGUAGE=en_GB:en\
@@ -96,7 +96,7 @@ Copy the relevant dot files and dot directories, e.g. (adjust as per your system
 ` for i in .dmrc .emacs .gtkrc-2.0 .gtkrc-xfce .pam_environment .profile .xsessionrc ; do cp $i ~/mybak ; done`\
 ` for i in .config .gnupg .grsync .idlerc .linuxmint .local .mozilla .stellarium .themes .tuxguitar* ; do cp -r $i ~/mybak ; done`
 
-- Of the dot files (first line), `.emacs` might not exist or be needed in general, unless you use emacs _and_ have made customisations to it.
+- Of the dot files (first line), `.emacs` might not exist or be needed in general, unless you use emacs _and_ have made customisations to it. There might be other emacs dot files or folders, so check your home directory (through the file manager, or `ls -al ~/` in a terminal).
 
 - Of the dot directories (second line), `.idlerc` only exists if you have installed the Idle Python IDE, and similarly for `.themes` (if you have installed additional themes), `.stellarium` and `.tuxguitar*`.
 
