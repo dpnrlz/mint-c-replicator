@@ -59,7 +59,7 @@ If this is your first time here, I recommend reading the long story first, to un
 
 The recipe I developed, described below, is a setp-by-step guide and two bash shell scripts to go from a fresh install to a working system for my use-case. Some notes to consider:
 
-* This has been tested on Mint 22 Cinnamon, and some things may/will not apply or work for other distros, DEs (Mate, XFce...) or other major versions of Mint Cinnamon, but should be a good starting point.
+* This has been initially tested on Mint 22 Cinnamon. Replication using the files created on Mint 22 also worked on a fresh Mint 22.1 installation. However, some things may/will not apply or work for other distros, DEs (Mate, XFce...) or other major versions of Mint Cinnamon, but should be a good starting point.
 
 * The process is likely not optimal yet, and includes three reboots, some of which might not be strictly necessary (perhaps service restarts or log outs/ins might be enough, but so far I have not looked into that); in any case, this recipe works :)
 
@@ -144,4 +144,4 @@ When finished, reboot and log back in. We're done!
 # Additional notes / issues
 
 * If you are curious, the theme shown on the "after" screenshot is "Graphite-Zero", with "Mint-Y-Sand" icons.
-* The applets shown on the same are: "Weather", "System Monitor", "Graphical Hardware Monitor", and (to the right of the clock) "Workspace switcher". For the Graphical HW Monitor, in the "base" machine I hid all tabs except the Disk ones (for read and for write), but for some reason this setting is not copied, and all tabs are being shown in the new machine, so this setting seems to be saved somewhere else.
+* The applets shown on the same are: "Weather", "System Monitor", "Graphical Hardware Monitor", and (to the right of the clock) "Workspace switcher". For the Graphical HW Monitor, note that some of its config settings depend on the specific hardware of the computer, so I would recommended to exclude its settings folder (`~/.config/cinnamon/spices/hwmonitor@sylfurd`) from the "backup", unless the replication will be on identical machines.
