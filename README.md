@@ -39,7 +39,7 @@ If this is your first time here, I recommend reading the long story first, to un
 ### Steps
 
 1. Prepare your "backup" source files and copy them e.g. to a USB (see the .sh scripts for examples).
-    * Dot files, dot directories, list of software & (Python) packages, locale file, dconf backup (`dconf dump / > dconf-settings.ini`), and .sh scripts.
+    * Dot files, dot directories, list of software & (Python) packages, locale file, dconf backup (`dconf dump / > dconf-settings.ini`), and `.sh` scripts.
 
 2. Do the new Mint install on the new computer.
 
@@ -57,18 +57,18 @@ If this is your first time here, I recommend reading the long story first, to un
 
 # Detailed story
 
-The recipe I developed, described below, is a setp-by-step guide and two bash shell scripts to go from a fresh install to a working system for my use-case. Some notes to consider:
+The recipe I developed, described below, is a step-by-step guide and two bash shell scripts to go from a fresh install to a working system for my use-case. Some notes to consider:
 
 * This has been initially tested on Mint 22 Cinnamon. Replication using the files created on Mint 22 also worked on a fresh Mint 22.1 installation. However, some things may/will not apply or work for other distros, DEs (Mate, XFce...) or other major versions of Mint Cinnamon, but should be a good starting point.
 
 * The process is likely not optimal yet, and includes three reboots, some of which might not be strictly necessary (perhaps service restarts or log outs/ins might be enough, but so far I have not looked into that); in any case, this recipe works :)
 
-* Follow the steps below, which include some commands in the terminal, and running a couple of scripts. The scripts I made here include some examples of software to install, but you should modify them for your desired apps and Python packages. Still, some of them should be kept (marked as such in the .sh files).
+* Follow the steps below, which include some commands in the terminal, and running a couple of scripts. The scripts I made here include some examples of software to install, but you should modify them for your desired apps and Python packages. Still, some of them should be kept (marked as such in the `.sh` files).
 
 * As the Python packages I need have the problem I described above, the script installs python-venv, then creates a virtual environment in the user's home, activates it, and adds it to the `~/.bashrc` file so that it is automatically activated when opening a terminal.
 
 ## 1. Preparation
-Install and set up the "source" system; install apps, desktop applets & themes, configure settings, customise, etc. Once ready, create some "backup" directory where we will place all files, settings, etc to be transplanted. Copy the 2 shell scripts (`1_packs.sh` and `2_config.sh`) to this directory too. Let's say this directory is ~/mybak
+Install and set up the "source" system; install apps, desktop applets & themes, configure settings, customise, etc. Once ready, create some "backup" directory where we will place all files, settings, etc to be transplanted. Copy the 2 shell scripts (`1_packs.sh` and `2_config.sh`) to this directory too. Let's say this directory is `~/mybak`
 
 ### 1a.
 Export your DE settings to a file:\
@@ -101,7 +101,7 @@ Copy the relevant dot files and dot directories, e.g. (adjust as per your system
 - Of the dot directories (second line), `.idlerc` only exists if you have installed the Idle Python IDE, and similarly for `.themes` (if you have installed additional themes), `.stellarium` and `.tuxguitar*`.
 
 - About Mozilla Firefox:
-Copying a profile (especially if, for instance, it contains logged in sessions) may cause problems, so I recommend that in the "source" system, before making this "backup", only the general Firefox settings are changed and aesthetic changes are made; do not log in, save passwords or sessions, etc (even clear any cookies and cache) before making the "backup" copy. Perhaps simply excluding the profile/s subdirectories inside `.mozilla/firefox` could be enough to avoid issues (although it might still cause problems with conflicting Firefox versions, if Firefox was updated in the "source" system since its own fresh install), or maybe keeping the full profile/s works for you, so adapt to your liking. In any case, most (if not all) settings and bookmarks, etc can be later [synchronised natively by Firefox](https://www.mozilla.org/en-US/firefox/features/sync/) by logging in to your Mozilla account after the general setup is done.
+Copying a profile (especially if, for instance, it contains logged-in sessions) may cause problems, so I recommend that in the "source" system, before making this "backup", only the general Firefox settings are changed and aesthetic changes are made; do not log in, save passwords or sessions, etc (even clear any cookies and cache) before making the "backup" copy. Perhaps simply excluding the profile/s subdirectories inside `.mozilla/firefox` could be enough to avoid issues (although it might still cause problems with conflicting Firefox versions, if Firefox was updated in the "source" system since its own fresh install), or maybe keeping the full profile/s works for you, so adapt to your liking. In any case, most (if not all) settings and bookmarks, etc can be later [synchronised natively by Firefox](https://www.mozilla.org/en-US/firefox/features/sync/) by logging in to your Mozilla account after the general setup is done.
 
 - About TuxGuitar & others:
 For some software, the config folders include, apart from the software name, its version; for example for TuxGuitar the config directory as of Dec/2024 is `~/.tuxguitar-1.5.6`, which will change at some point, and that's why the command above considers `.tuxguitar*`. Blender and Gimp do a similar thing, although inside the `~/.config` directory (e.g. `~/.config/blender/4.0`).
@@ -126,7 +126,7 @@ Open a terminal and do:\
 Note that the first script (`1_packs.sh`) will do an update before installing packages, but for extra safety, do this initial update here. When done, reboot and log back in. Usually, apt will tell us if a reboot is needed after the update, and maybe a log out/in might suffice, but I prefer to reboot here too.
 
 ## 5. .bashrc, software, Python
-Open a terminal, go to the directory with the scripts and run:\
+Open a terminal, go to the directory with the scripts and do:\
 ` source 1_packs.sh`\
   which installs stuff and creates a Python venv in your home directory.\
 Note that the installation of the following requires user interaction:
@@ -136,7 +136,7 @@ Note that the installation of the following requires user interaction:
 When done, reboot and log back in.
 
 ## 6. Looks
-Open a terminal, go to the directory with the scripts and run:\
+Open a terminal, go to the directory with the scripts and do:\
 ` source 2_config.sh`\
 When finished, reboot and log back in. We're done!
 
