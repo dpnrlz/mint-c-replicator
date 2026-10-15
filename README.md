@@ -34,7 +34,7 @@ This is most useful when you always do the same things to a new system so that i
 # Long story short
 
 This section is the TL/DR version, for when you know what you're doing and only need a quick guide: just follow steps 1-3 and you're done.
-If this is your first time here, I recommend reading the long story first, to understand what is done and what you need to adapt to your case.
+If this is your first time here, I recommend reading the detailed story (below) first, to understand what is done and what you need to adapt to your case.
 
 ### Steps
 
